@@ -29,7 +29,7 @@
     ]
   },
   "devDependencies": {
-    "@backstage/cli": "^0.33.0",
+    "@backstage/cli": "^0.33.1",
     "@backstage/e2e-test-utils": "^0.1.1",
     "@playwright/test": "^1.32.3",
     "node-gyp": "^10.0.0",
@@ -50,9 +50,5 @@
       "prettier --write"
     ]
   },
-  "packageManager": "yarn@4.4.1",
-  "dependencies": {
-    "@backstage/plugin-catalog-backend-module-github": "^0.10.1",
-    "@backstage/plugin-scaffolder-backend-module-github": "^0.8.1"
-  }
+  "packageManager": "yarn@4.4.1"
 }

@@ -3,7 +3,7 @@ app:
   baseUrl: http://localhost:3000
 
 organization:
-  name: Bancolombia
+  name: My Company
 
 backend:
   # Used for enabling authentication, secret is shared by all backend plugins
@@ -35,6 +35,8 @@ backend:
 integrations:
   github:
     - host: github.com
+      apiBaseUrl: https://api.github.com     # optional
+      rawBaseUrl: https://raw.githubusercontent.com  # optional
       # This is a Personal Access Token or PAT from GitHub. You can find out how to generate this token, and more information
       # about setting up the GitHub integration here: https://backstage.io/docs/integrations/github/locations#configuration
       token: ${GITHUB_TOKEN}
@@ -76,19 +78,16 @@ catalog:
     entityFilename: catalog-info.yaml
     pullRequestBranchName: backstage-integration
   rules:
-    - allow: [Component, System, API, Resource, Location, Group, User, Domain, Template]
+    - allow: [Component, System, API, Resource, Location, Template]
   locations:
     # Local example data, file locations are relative to the backend process, typically `packages/backend`
     - type: file
       target: ../../examples/entities.yaml
 
-    # Local example template
     - type: file
-      target: ../../examples/template/template.yaml
+      target: ../../templates/businessflow.yaml
       rules:
         - allow: [Template]
-    
-    
 
     # Local example organizational data
     - type: file
@@ -105,9 +104,6 @@ catalog:
     #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme-corp.yaml
     #   rules:
     #     - allow: [User, Group]
-  # Experimental: Always use the search method in UrlReaderProcessor.
-  # New adopters are encouraged to enable it as this behavior will be the default in a future release.
-  useUrlReadersSearch: true
 
 kubernetes:
   # see https://backstage.io/docs/features/kubernetes/configuration for kubernetes configuration options
