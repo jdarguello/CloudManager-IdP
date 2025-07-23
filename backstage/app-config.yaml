@@ -3,7 +3,7 @@ app:
   baseUrl: http://localhost:3000
 
 organization:
-  name: My Company
+  name: Bancolombia
 
 backend:
   # Used for enabling authentication, secret is shared by all backend plugins
@@ -86,6 +86,11 @@ catalog:
 
     - type: file
       target: ../../templates/businessflow.yaml
+      rules:
+        - allow: [Template]
+    
+    - type: file
+      target: ../../templates/backdb.yaml
       rules:
         - allow: [Template]
 

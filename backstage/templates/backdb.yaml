@@ -1,0 +1,73 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: backdb
+  title: Service Back DB
+  description: Creación de un nuevo microservicio backend con BD
+spec:
+  owner: jdarguello/backdb
+  type: service
+  parameters:
+    - title: Metadata
+      properties:
+        businessflow_name:
+          title: Nombre del flujo de negocio
+          type: string
+          ui:autofocus: true
+        micro_name:
+          title: Nombre del microservicio
+          type: string
+          ui:autofocus: true
+        back_name:
+          title: Nombre del servicio backend
+          type: string
+          ui:autofocus: true
+        new_micro_repo:
+          title: ¿Crear nuevo microservicio?
+          type: string
+          enum:
+            - "true"
+            - "false"
+          default: "true"
+      required:
+        - businessflow_name
+        - micro_name
+        - back_name
+        - new_micro_repo
+    - title: Kubernetes
+      properties:
+        image:
+          type: string
+          title: Imagen base
+        replicas:
+          type: string
+          default: "1"
+      required:
+        - image
+        - replicas
+  steps:
+    - id: log-message
+      name: Log Message
+      action: debug:log
+      input:
+        message: "Proceso de creación del servicio backend: ${{ parameters.micro_name }}"
+
+    - id: dispatch
+      name: Dispatch Businessflow workflow
+      action: github:actions:dispatch
+      input:
+        repoUrl:        'github.com?owner=jdarguello&repo=CloudManager'
+        workflowId:     service-backdb.yaml
+        branchOrTagName: main
+        workflowInputs:
+          businessflow_name:          ${{ parameters.businessflow_name }}
+          micro_name:   ${{ parameters.micro_name }}
+          image: ${{ parameters['image'] }}
+          back_name:          ${{ parameters.back_name }}
+          replicas:      ${{ parameters['replicas'] }}
+          new_micro_repo:      ${{ parameters['new_micro_repo'] }}
+  output:
+    links:
+      - title: Ver ejecución en GitHub
+        url: ${{ steps.dispatch.output.workflowRunUrl }}
+        icon: github
