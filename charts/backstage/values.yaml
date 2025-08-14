@@ -1,0 +1,11 @@
+mode: production
+image:
+  repository: ghcr.io/jdarguello/cloudmanager
+  tag: '0.3'
+db:
+  instances: 1
+ingress:
+  className: nginx
+  host: backstage.127.0.0.1.nip.io
+ingrestor:
+  disableDefaultWorkloadTypes: false
