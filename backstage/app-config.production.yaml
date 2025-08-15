@@ -37,7 +37,8 @@ auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
   providers:
     guest:
-      userEntityRef: user:production/guest
+      userEntityRef: user:guest
+      ownershipEntityRefs: ["user:guest", "group:guest", "group:guests"]
       dangerouslyAllowOutsideDevelopment: true
     github:
       development:
