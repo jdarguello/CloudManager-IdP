@@ -5,7 +5,7 @@ metadata:
   title: Flujo de negocio
   description: Creación de un nuevo flujo de negocio
 spec:
-  owner: jdarguello/businessflow
+  owner: guest
   type: service
   parameters:
     - title: Metadata

@@ -5,7 +5,7 @@ metadata:
   title: Service Back DB
   description: Creación de un nuevo microservicio backend con BD
 spec:
-  owner: jdarguello/backdb
+  owner: guest
   type: service
   parameters:
     - title: Metadata
