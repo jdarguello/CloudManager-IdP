@@ -34,8 +34,17 @@ integrations:
       token: ${GITHUB_TOKEN}
 
 auth:
+  # see https://backstage.io/docs/auth/ to learn about auth providers
   providers:
-    guest: {}
+    guest:
+      provider: guest
+      userEntityRef: user:default/guest # Optional: Customize the guest user entity reference
+      ownershipEntityRefs: [] # Optional: Add ownership references for the guest user
+      dangerouslyAllowOutsideDevelopment: true
+    github:
+      development:
+        clientId: ${AUTH_GITHUB_CLIENT_ID}
+        clientSecret: ${AUTH_GITHUB_CLIENT_SECRET}
 
 catalog:
   import:
