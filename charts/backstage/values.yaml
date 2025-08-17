@@ -1,7 +1,7 @@
 mode: production
 image:
   repository: ghcr.io/jdarguello/cloudmanager
-  tag: '0.3'
+  tag: 0.12.3
 db:
   instances: 1
 ingress:
