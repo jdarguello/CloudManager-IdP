@@ -52,7 +52,25 @@ spec:
         - min-size
         - max-size
         - desired-size
-
+    - title: Secretos
+      properties:
+        aws-key:
+          title: AWS ACCESS KEY ID
+          type: string
+        aws-secret:
+          title: AWS SECRET ACCESS KEY
+          type: string
+        github-username:
+          title: GitHub Username
+          type: string
+        github-token:
+          title: GitHub Token
+          type: string
+      required:
+      - aws-key
+      - aws-secret
+      - github-username
+      - github-token
   steps:
     - id: log-message
       name: Log Message
@@ -64,7 +82,7 @@ spec:
       name: Dispatch Businessflow workflow
       action: github:actions:dispatch
       input:
-        repoUrl:        'github.com?owner=lima-demos-days&repo=CloudManager'
+        repoUrl:        'github.com?owner=jdarguello&repo=CloudManager'
         workflowId:     businessflow-new.yaml
         branchOrTagName: main
         workflowInputs:
@@ -75,6 +93,9 @@ spec:
           min_size:      ${{ parameters['min-size'] }}
           max_size:      ${{ parameters['max-size'] }}
           desired_size:  ${{ parameters['desired-size'] }}
+          aws_access_key_id: ${{ parameters['aws-key'] }}
+          aws_secret_access_key: ${{ parameters['aws-secret'] }}
+          token_github: ${{ parameters['github-token'] }}
 
   output:
     links:
